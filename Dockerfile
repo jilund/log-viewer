@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM openjdk:8-jre-alpine
 # RUN apt-get update && apt-get install -y --no-install-recommends nano
 EXPOSE 8111
 
@@ -14,8 +14,6 @@ RUN mv /opt/log-viewer-1.0.11 /opt/logviewer
 COPY scripts/logviewer.sh /opt/logviewer/
 
 WORKDIR /opt/logviewer
-# RUN chmod +x /opt/logviewer/logviewer.sh
-# ENTRYPOINT ["bash", "/opt/logviewer/logviewer.sh"]
 ENTRYPOINT ["java", "-ea", "-Dlog-viewer.config-file=/opt/logviewer/config.conf", \
             "-jar","/opt/logviewer/lib/log-viewer-cli-1.0.11.jar", "startup"]
             
